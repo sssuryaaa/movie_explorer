@@ -1,17 +1,31 @@
 import { useState, useEffect, useOptimistic } from "react";
 import Shimmer from "./Shimmer";
-import DisplayCard from "./DisplayCard";
 import { TOP_MOV_URL } from "../utils/constants";
+import DisplayCardForMovies from "./DisplayCardForMovies";
 
 const TopRatedMovies = () => {
     const [topRatedMovieList, setTopRatedMovieList] = useState([]);
+    const [page, setPage] = useState(1);
     useEffect(()=>{
-        fetchData();
-    }, [])
-    const fetchData = async () => {
-        const data = await fetch(TOP_MOV_URL);
+        if(page === 2){
+            var observer = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting){
+                    setPage(prev => prev+1);
+                }
+            }, {});
+            observer.observe(document.getElementById("loadmore-btn"));
+        }
+        fetchData(page);
+    }, [page]);
+    const fetchData = async (page_no) => {
+        const data = await fetch(TOP_MOV_URL + "&page=" + page_no);
         const json = await data.json();
-        setTopRatedMovieList(json.results);
+        setTopRatedMovieList(prevList => {
+            const combined = [...prevList, ...json.results];
+            return combined.filter(
+                (movie, index, self) => index === self.findIndex(m => m.id === movie.id)
+            );
+        });
     }
     return topRatedMovieList.length === 0 ? <Shimmer/> : (
         <div className="upcoming-movies">
@@ -20,12 +34,14 @@ const TopRatedMovies = () => {
                 {
                     topRatedMovieList.map((ele) => {
                         return (
-                            <DisplayCard data = {ele} key={ele.id}/>
+                            <DisplayCardForMovies data = {ele} key={ele.id}/>
                         )
                     })
                 }
             </div>
-            <button className="loadmore-btn w-dvw bg-blue-500">
+            <button id="loadmore-btn" className="loadmore-btn w-dvw bg-blue-500" onClick={()=>{
+                setPage(page+1);
+            }}>
                 Load More
             </button>
         </div>

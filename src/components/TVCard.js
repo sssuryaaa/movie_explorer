@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+
 const TVCard = () => {
     return (
         <div className="home-card">
             <h1 className="font-bold">TV Shows</h1>
             <ul>
-                <li>Popular</li>
-                <li>Airing Today</li>
-                <li>On TV</li>
-                <li>Top Rated</li>
+                <Link to="/tv/popular" target="_blank"><li>Popular</li></Link>
+                <Link to="/tv/airing_today" target="_blank"><li>Airing Today</li></Link>
+                <Link to="/tv/on_the_air" target="_blank"><li>On TV</li></Link>
+                <Link to="/tv/top_rated" target="_blank"><li>Top Rated</li></Link>
             </ul>
         </div>
     )

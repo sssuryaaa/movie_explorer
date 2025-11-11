@@ -7,6 +7,11 @@ import NowPlayingMovies from "./components/NowPlayingMovies";
 import { createBrowserRouter, RouterProvider, outlet, Outlet } from "react-router-dom";
 import UpcomingMovies from "./components/UpcomingMovies";
 import TopRatedMovies from "./components/TopRatedMovies";
+import PopularTV from "./components/PopularTV";
+import AiringTodayTV from "./components/AiringTodayTV";
+import OnTheAirTV from "./components/OnTheAirTV";
+import TopRatedTV from "./components/TopRatedTV";
+import PopularPeople from "./components/PopularPeople";
 
 const AppLayout = () => {
     return (
@@ -42,6 +47,26 @@ const appRouter = createBrowserRouter(
                 {
                     path: "/movies/toprated",
                     element: <TopRatedMovies/>
+                },
+                {
+                    path: "/tv/popular",
+                    element: <PopularTV />
+                },
+                {
+                    path: "/tv/airing_today",
+                    element: <AiringTodayTV/>
+                },
+                {
+                    path: "/tv/on_the_air",
+                    element: <OnTheAirTV/>
+                },
+                {
+                    path: "/tv/top_rated",
+                    element: <TopRatedTV/>
+                },
+                {
+                    path: "/people/popular",
+                    element: <PopularPeople/>
                 }
             ]
         }

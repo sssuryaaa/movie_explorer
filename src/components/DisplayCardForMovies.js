@@ -1,4 +1,4 @@
-const DisplayCard = ( props ) => {
+const DisplayCardForMovies = ( props ) => {
     const {poster_path, title, overview, vote_average, release_date} = props.data;
     return (
         <div className="display-card w-50 h-90 ">
@@ -9,4 +9,4 @@ const DisplayCard = ( props ) => {
     )
 }
 
-export default DisplayCard;
+export default DisplayCardForMovies;

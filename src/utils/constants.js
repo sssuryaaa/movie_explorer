@@ -5,3 +5,15 @@ export const NOW_MOV_URL = "https://api.themoviedb.org/3/movie/now_playing?api_k
 export const UPC_MOV_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=345e74bb14ffa2d210277380a5292f25";
 
 export const TOP_MOV_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=345e74bb14ffa2d210277380a5292f25";
+
+export const API_KEY = "345e74bb14ffa2d210277380a5292f25"
+
+export const POP_TV_URL = "https://api.themoviedb.org/3/tv/popular?language=en-US";
+
+export const AIRING_TV_URL = "https://api.themoviedb.org/3/tv/airing_today?language=en-US";
+
+export const ONTHEAIR_TV_URL = "https://api.themoviedb.org/3/tv/on_the_air?language=en-US";
+
+export const TOP_TV_URL = "https://api.themoviedb.org/3/tv/top_rated?language=en-US";
+
+export const POP_PEOPLE = "https://api.themoviedb.org/3/person/popular?language=en-US";

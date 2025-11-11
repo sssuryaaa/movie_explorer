@@ -1,10 +1,11 @@
-import { useState, useEffect, useOptimistic } from "react";
+import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
-import { UPC_MOV_URL } from "../utils/constants";
+import { API_KEY, POP_PEOPLE } from "../utils/constants";
 import DisplayCardForMovies from "./DisplayCardForMovies";
+import DisplayCardForPeople from "./DisplayCardForPeople";
 
-const UpcomingMovies = () => {
-    const [upcomingMovieList, setUpcomingMovieList] = useState([]);
+const PopularPeople = () => {
+    const [popMovieList, setPopMovieList] = useState([]);
     const [page, setPage] = useState(1);
     useEffect(()=>{
         if(page === 2){
@@ -18,28 +19,31 @@ const UpcomingMovies = () => {
         fetchData(page);
     }, [page]);
     const fetchData = async (page_no) => {
-        const data = await fetch(UPC_MOV_URL + "&page=" + page_no);
+        const data = await fetch(POP_PEOPLE + "&api_key=" + API_KEY +"&page="+page_no);
         const json = await data.json();
-        setUpcomingMovieList(prevList => {
+        console.log(json);
+        // setPopMovieList([...popMovieList, ...json.results]);
+        setPopMovieList(prevList => {
             const combined = [...prevList, ...json.results];
             return combined.filter(
                 (movie, index, self) => index === self.findIndex(m => m.id === movie.id)
             );
         });
+
     }
-    return upcomingMovieList.length === 0 ? <Shimmer/> : (
-        <div className="upcoming-movies">
-            <h1 className="font-bold">Upcoming Movies</h1>
-            <div className="upcoming-movie-cards flex gap-2 flex-wrap">
+    return popMovieList.length === 0 ? <Shimmer/> : (
+        <div className="popular-movies">
+            <h1 className="font-bold">Popular People</h1>
+            <div className="pop-movie-cards flex gap-2 flex-wrap p-9">
                 {
-                    upcomingMovieList.map((ele) => {
+                    popMovieList.map((ele) => {
                         return (
-                            <DisplayCardForMovies data = {ele} key = {ele.id}/>
+                            <DisplayCardForPeople data = {ele} key={ele.id}/>
                         )
                     })
                 }
             </div>
-            <button id="loadmore-btn" className="loadmore-btn w-dvw bg-blue-500" onClick={()=>{
+            <button id="loadmore-btn" className="loadmore-btn w-dvw bg-blue-500" onClick={(event) => {
                 setPage(page+1);
             }}>
                 Load More
@@ -48,4 +52,4 @@ const UpcomingMovies = () => {
     )
 }
 
-export default UpcomingMovies;
+export default PopularPeople;
