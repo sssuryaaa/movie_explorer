@@ -5,7 +5,7 @@ const PeopleCard = () =>{
         <div className="home-card">
             <h1 className="font-bold">People</h1>
             <ul>
-                <Link to="/people/popular" target="_blank"><li>Popular</li></Link>
+                <Link to="/people/popular" target="_blank"><li className="font-extralight hover:text-[#a0a0a0]">Popular</li></Link>
             </ul>
         </div>
     )

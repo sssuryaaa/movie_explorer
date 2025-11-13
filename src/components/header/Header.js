@@ -7,15 +7,15 @@ const Header = () => {
     const [openPeopleDropdown, setOpenPeopleDropdown] = useState(false);
 
     return (
-        <div className="header flex justify-between mb-2 bg-[#003153] relative shadow-[0_4px_4px_-2px_rgba(0,0,0,0.2)] p-4 text-white">
+        <div className="header flex justify-between mb-2 relative shadow-[0_3px_3px_-2px_rgba(0,0,0,0.2)] p-4 ">
             <h1 className="logo">Logo</h1>
             <ul className="header-list flex">
-                <li className="mx-8">Home</li>
-                <li className="mx-8" onMouseEnter={() => setOpenMovieDropdown(true)} onMouseLeave={()=> setOpenMovieDropdown(false)}>
+                <li className="mx-8 font-bold">Home</li>
+                <li className="mx-8 font-bold" onMouseEnter={() => setOpenMovieDropdown(true)} onMouseLeave={()=> setOpenMovieDropdown(false)}>
                     Movies
                     {
                         openMovieDropdown && (
-                        <div className="movie-dropdown absolute text-black">
+                        <div className="movie-dropdown absolute text-black font-normal">
                             <div>
                                 Popular
                             </div>
@@ -32,11 +32,11 @@ const Header = () => {
                         )
                     }                   
                 </li>
-                <li className="mx-8" onMouseEnter={()=> setOpenTVDropdown(true)} onMouseLeave={() => setOpenTVDropdown(false)}>
+                <li className="mx-8 font-bold" onMouseEnter={()=> setOpenTVDropdown(true)} onMouseLeave={() => setOpenTVDropdown(false)}>
                     TV Shows
                     {
                         openTVDropdown && (
-                            <div className="tv-dropdown absolute bg-white shadow-xl text-black">
+                            <div className="tv-dropdown absolute bg-white shadow-xl text-black font-normal">
                                 <div className="hover:bg-gray-200 p-1 px-1.5">
                                     popular
                                 </div>
@@ -53,11 +53,11 @@ const Header = () => {
                         )
                     }
                 </li>
-                <li className="mx-8" onMouseEnter={()=>setOpenPeopleDropdown(true)} onMouseLeave={() => setOpenPeopleDropdown(false)}>
+                <li className="mx-8 font-bold" onMouseEnter={()=>setOpenPeopleDropdown(true)} onMouseLeave={() => setOpenPeopleDropdown(false)}>
                     People
                     {
                         openPeopleDropdown && (
-                            <div className="people-dropdown absolute text-black">
+                            <div className="people-dropdown absolute text-black font-normal">
                                 <div>
                                     popular
                                 </div>

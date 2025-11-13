@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import Shimmer from "./Shimmer";
-import { API_KEY, POP_PEOPLE } from "../utils/constants";
-import DisplayCardForMovies from "./DisplayCardForMovies";
-import DisplayCardForPeople from "./DisplayCardForPeople";
+import Shimmer from "../Shimmer";
+import { POP_TV_URL } from "../../utils/constants";
+import { API_KEY } from "../../utils/constants";
+import DisplayCardForTV from "./DisplayCardForTV";
 
-const PopularPeople = () => {
+const PopularTV = () => {
     const [popMovieList, setPopMovieList] = useState([]);
     const [page, setPage] = useState(1);
     useEffect(()=>{
@@ -19,9 +19,8 @@ const PopularPeople = () => {
         fetchData(page);
     }, [page]);
     const fetchData = async (page_no) => {
-        const data = await fetch(POP_PEOPLE + "&api_key=" + API_KEY +"&page="+page_no);
+        const data = await fetch(POP_TV_URL+ "&api_key=" + API_KEY +"&page="+page_no);
         const json = await data.json();
-        console.log(json);
         // setPopMovieList([...popMovieList, ...json.results]);
         setPopMovieList(prevList => {
             const combined = [...prevList, ...json.results];
@@ -33,12 +32,12 @@ const PopularPeople = () => {
     }
     return popMovieList.length === 0 ? <Shimmer/> : (
         <div className="popular-movies">
-            <h1 className="font-bold">Popular People</h1>
+            <h1 className="font-bold">Popular TV Shows</h1>
             <div className="pop-movie-cards flex gap-2 flex-wrap p-9">
                 {
                     popMovieList.map((ele) => {
                         return (
-                            <DisplayCardForPeople data = {ele} key={ele.id}/>
+                            <DisplayCardForTV data = {ele} key={ele.id}/>
                         )
                     })
                 }
@@ -52,4 +51,4 @@ const PopularPeople = () => {
     )
 }
 
-export default PopularPeople;
+export default PopularTV;

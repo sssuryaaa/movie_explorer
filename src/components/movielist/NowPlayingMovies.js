@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import Shimmer from "./Shimmer";
-import { POP_MOV_URL } from "../utils/constants";
+import Shimmer from "../Shimmer";
+import { NOW_MOV_URL } from "../../utils/constants";
 import DisplayCardForMovies from "./DisplayCardForMovies";
 
-const PopularMovies = () => {
-    const [popMovieList, setPopMovieList] = useState([]);
+const NowPlayingMovies = () => {
+    const [nowPlayingMovieList, setNowPlayingMovieList] = useState([]);
     const [page, setPage] = useState(1);
     useEffect(()=>{
         if(page === 2){
@@ -18,23 +18,21 @@ const PopularMovies = () => {
         fetchData(page);
     }, [page]);
     const fetchData = async (page_no) => {
-        const data = await fetch(POP_MOV_URL+"&page="+page_no);
+        const data = await fetch(NOW_MOV_URL + "&page=" + page_no);
         const json = await data.json();
-        // setPopMovieList([...popMovieList, ...json.results]);
-        setPopMovieList(prevList => {
+        setNowPlayingMovieList(prevList => {
             const combined = [...prevList, ...json.results];
             return combined.filter(
                 (movie, index, self) => index === self.findIndex(m => m.id === movie.id)
             );
         });
-
     }
-    return popMovieList.length === 0 ? <Shimmer/> : (
+    return nowPlayingMovieList.length === 0 ? <Shimmer/> : (
         <div className="popular-movies">
-            <h1 className="font-bold">Popular Movies</h1>
-            <div className="pop-movie-cards flex gap-2 flex-wrap p-9">
+            <h1 className="font-bold">Now Playing</h1>
+            <div className="now-playing-movie-cards flex gap-2 flex-wrap">
                 {
-                    popMovieList.map((ele) => {
+                    nowPlayingMovieList.map((ele) => {
                         return (
                             <DisplayCardForMovies data = {ele} key={ele.id}/>
                         )
@@ -50,4 +48,4 @@ const PopularMovies = () => {
     )
 }
 
-export default PopularMovies;
+export default NowPlayingMovies;

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import Shimmer from "./Shimmer";
-import { AIRING_TV_URL } from "../utils/constants";
-import { API_KEY } from "../utils/constants";
+import Shimmer from "../Shimmer";
+import { TOP_TV_URL } from "../../utils/constants";
+import { API_KEY } from "../../utils/constants";
 import DisplayCardForTV from "./DisplayCardForTV";
 
-const AiringTodayTV = () => {
+const TopRatedTV = () => {
     const [popMovieList, setPopMovieList] = useState([]);
     const [page, setPage] = useState(1);
     useEffect(()=>{
@@ -19,7 +19,7 @@ const AiringTodayTV = () => {
         fetchData(page);
     }, [page]);
     const fetchData = async (page_no) => {
-        const data = await fetch(AIRING_TV_URL + "&api_key=" + API_KEY +"&page="+page_no);
+        const data = await fetch(TOP_TV_URL + "&api_key=" + API_KEY +"&page="+page_no);
         const json = await data.json();
         // setPopMovieList([...popMovieList, ...json.results]);
         setPopMovieList(prevList => {
@@ -32,7 +32,7 @@ const AiringTodayTV = () => {
     }
     return popMovieList.length === 0 ? <Shimmer/> : (
         <div className="popular-movies">
-            <h1 className="font-bold">Airing Today(TV)</h1>
+            <h1 className="font-bold">Top Rated(TV)</h1>
             <div className="pop-movie-cards flex gap-2 flex-wrap p-9">
                 {
                     popMovieList.map((ele) => {
@@ -51,4 +51,4 @@ const AiringTodayTV = () => {
     )
 }
 
-export default AiringTodayTV;
+export default TopRatedTV;

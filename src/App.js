@@ -1,23 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header";
-import Body from "./components/Body";
-import PopularMovies from "./components/PoularMovies";
-import NowPlayingMovies from "./components/NowPlayingMovies";
+import Header from "./components/header/Header";
+import Body from "./components/body/Body";
+import PopularMovies from "./components/movielist/PoularMovies";
+import NowPlayingMovies from "./components/movielist/NowPlayingMovies";
 import { createBrowserRouter, RouterProvider, outlet, Outlet } from "react-router-dom";
-import UpcomingMovies from "./components/UpcomingMovies";
-import TopRatedMovies from "./components/TopRatedMovies";
-import PopularTV from "./components/PopularTV";
-import AiringTodayTV from "./components/AiringTodayTV";
-import OnTheAirTV from "./components/OnTheAirTV";
-import TopRatedTV from "./components/TopRatedTV";
-import PopularPeople from "./components/PopularPeople";
+import UpcomingMovies from "./components/movielist/UpcomingMovies";
+import TopRatedMovies from "./components/movielist/TopRatedMovies";
+import PopularTV from "./components/TVlist/PopularTV";
+import AiringTodayTV from "./components/TVlist/AiringTodayTV";
+import OnTheAirTV from "./components/TVlist/OnTheAirTV";
+import TopRatedTV from "./components/TVlist/TopRatedTV";
+import PopularPeople from "./components/peoplelist/PopularPeople";
+import Footer from "./components/footer/Footer";
 
 const AppLayout = () => {
     return (
         <div className="layout">
             <Header/>
             <Outlet/>
+            <Footer/>
         </div>
     )
 }

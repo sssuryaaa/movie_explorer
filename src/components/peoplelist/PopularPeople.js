@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import Shimmer from "./Shimmer";
-import { NOW_MOV_URL } from "../utils/constants";
-import DisplayCardForMovies from "./DisplayCardForMovies";
+import Shimmer from "../Shimmer";
+import { API_KEY, POP_PEOPLE } from "../../utils/constants";
+import DisplayCardForMovies from "../movielist/DisplayCardForMovies";
+import DisplayCardForPeople from "./DisplayCardForPeople";
 
-const NowPlayingMovies = () => {
-    const [nowPlayingMovieList, setNowPlayingMovieList] = useState([]);
+const PopularPeople = () => {
+    const [popMovieList, setPopMovieList] = useState([]);
     const [page, setPage] = useState(1);
     useEffect(()=>{
         if(page === 2){
@@ -18,23 +19,26 @@ const NowPlayingMovies = () => {
         fetchData(page);
     }, [page]);
     const fetchData = async (page_no) => {
-        const data = await fetch(NOW_MOV_URL + "&page=" + page_no);
+        const data = await fetch(POP_PEOPLE + "&api_key=" + API_KEY +"&page="+page_no);
         const json = await data.json();
-        setNowPlayingMovieList(prevList => {
+        console.log(json);
+        // setPopMovieList([...popMovieList, ...json.results]);
+        setPopMovieList(prevList => {
             const combined = [...prevList, ...json.results];
             return combined.filter(
                 (movie, index, self) => index === self.findIndex(m => m.id === movie.id)
             );
         });
+
     }
-    return nowPlayingMovieList.length === 0 ? <Shimmer/> : (
+    return popMovieList.length === 0 ? <Shimmer/> : (
         <div className="popular-movies">
-            <h1 className="font-bold">Now Playing</h1>
-            <div className="now-playing-movie-cards flex gap-2 flex-wrap">
+            <h1 className="font-bold">Popular People</h1>
+            <div className="pop-movie-cards flex gap-2 flex-wrap p-9">
                 {
-                    nowPlayingMovieList.map((ele) => {
+                    popMovieList.map((ele) => {
                         return (
-                            <DisplayCardForMovies data = {ele} key={ele.id}/>
+                            <DisplayCardForPeople data = {ele} key={ele.id}/>
                         )
                     })
                 }
@@ -48,4 +52,4 @@ const NowPlayingMovies = () => {
     )
 }
 
-export default NowPlayingMovies;
+export default PopularPeople;

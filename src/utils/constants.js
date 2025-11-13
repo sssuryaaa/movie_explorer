@@ -17,3 +17,5 @@ export const ONTHEAIR_TV_URL = "https://api.themoviedb.org/3/tv/on_the_air?langu
 export const TOP_TV_URL = "https://api.themoviedb.org/3/tv/top_rated?language=en-US";
 
 export const POP_PEOPLE = "https://api.themoviedb.org/3/person/popular?language=en-US";
+
+export const CAR_URL = "https://api.themoviedb.org/3/trending/all/day?language=en-US";
