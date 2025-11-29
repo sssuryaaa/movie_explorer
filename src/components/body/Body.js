@@ -1,14 +1,13 @@
-import MovieCard from "../footer/MovieCard";
-import TVCard from "../footer/TVCard";
-import PeopleCard from "../footer/PeopleCard";
+import { useSelector } from "react-redux";
 import Carousel from "../carousel/Carousel";
 
 const Body = () => {
-    return (
-        <div className="body">
-            <Carousel/>
-        </div>
-    )
-}
+  const theme = useSelector((store) => store.theme);
+  return (
+    <div className={`body ${theme === "dark" ? "bg-gray-600 text-white" : ""}`}>
+      <Carousel />
+    </div>
+  );
+};
 
 export default Body;

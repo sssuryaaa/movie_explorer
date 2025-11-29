@@ -3,6 +3,7 @@ import { API_KEY, CAR_URL } from "../../utils/constants";
 import CarShimmer from "./CarShimmer";
 import DisplayCardForMovies from "../movielist/DisplayCardForMovies";
 import DisplayCardForTV from "../TVlist/DisplayCardForTV";
+import { Link } from "react-router-dom";
 
 const Carousel = () => {
   const [carData, setCarData] = useState([]);

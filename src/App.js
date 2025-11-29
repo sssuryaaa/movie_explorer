@@ -21,6 +21,7 @@ import Footer from "./components/footer/Footer";
 import Wishlist from "./components/wishlist/Wishlist";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import ShowDetails from "./components/showDetails/ShowDetails";
 
 const AppLayout = () => {
   return (
@@ -82,6 +83,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/wishlist",
         element: <Wishlist />,
+      },
+      {
+        path: "movies/:id",
+        element: <ShowDetails />,
+      },
+      {
+        path: "tv/:id",
+        element: <ShowDetails />,
       },
     ],
   },

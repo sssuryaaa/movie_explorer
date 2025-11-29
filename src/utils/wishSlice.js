@@ -10,8 +10,7 @@ const wishSlice = createSlice({
       state.items.push(action.payload);
     },
     removeItem: (state, action) => {
-      const index = state.items.indexOf(action.payload);
-      state.items.splice(index, 1);
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
   },
 });
