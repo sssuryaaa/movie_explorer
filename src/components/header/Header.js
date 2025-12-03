@@ -116,7 +116,11 @@ const Header = () => {
           )}
         </li>
         <Link to="/wishlist">
-          <li className=" mx-8 font-extralight">
+          <li
+            className={`mx-8 font-extralight ${
+              wishItems.length > 0 ? "text-red-600 font-bold" : ""
+            }`}
+          >
             Watch Later ({wishItems.length})
           </li>
         </Link>

@@ -7,7 +7,6 @@ import Shimmer from "../Shimmer";
 
 const ShowDetails = () => {
   const location = useLocation();
-  console.log(location);
   const isMovie = location.pathname.includes("movies") ? true : false;
   const { id } = useParams();
   const theme = useSelector((store) => store.theme);
@@ -15,19 +14,26 @@ const ShowDetails = () => {
   if (!showInfo && !errorMessage) return <Shimmer />;
   else if (!showInfo && errorMessage)
     return <div className="w-28 m-auto mt-10">{errorMessage}</div>;
-  const { backdrop_path, genres, poster_path, original_title, overview } =
+  const { backdrop_path, genres, poster_path, original_title, name, overview } =
     showInfo;
   return (
     <div className={`${theme === "dark" ? "text-white bg-gray-600" : ""}`}>
       <div>
         <img
-          className="opacity-50 w-full h-[600px] object-cover"
+          className="opacity-50 w-full h-[450px] object-cover"
           src={IMG_CDN + backdrop_path}
         ></img>
       </div>
+      <div>
+        <img
+          className="absolute w-[200px] h-[300px] top-[150px] left-[250px]"
+          src={IMG_CDN + poster_path}
+        ></img>
+      </div>
       <div className="absolute top-[200px] left-[500px]">
-        <h1 className="text-4xl font-bold">{original_title}</h1>
-        <h2>{genres.map((genre) => genre?.name).join(",")}</h2>
+        <h1 className="text-4xl font-bold">{original_title || name}</h1>
+        <h2>{genres.map((genre) => genre?.name).join(", ")}</h2>
+        <p className="my-2.5">{overview}</p>
       </div>
     </div>
   );

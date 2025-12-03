@@ -25,7 +25,6 @@ const PopularPeople = () => {
       POP_PEOPLE + "&api_key=" + API_KEY + "&page=" + page_no
     );
     const json = await data.json();
-    console.log(json);
     // setPopMovieList([...popMovieList, ...json.results]);
     setPopMovieList((prevList) => {
       const combined = [...prevList, ...json.results];
