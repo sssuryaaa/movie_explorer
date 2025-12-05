@@ -49,7 +49,7 @@ const PopularMovies = () => {
       </div>
       <button
         id="loadmore-btn"
-        className="loadmore-btn w-dvw bg-blue-500"
+        className="loadmore-btn w-[250px] bg-blue-500 my-2 p-2 border-blue-950 rounded-lg cursor-pointer mx-auto block"
         onClick={(event) => {
           setPage(page + 1);
         }}

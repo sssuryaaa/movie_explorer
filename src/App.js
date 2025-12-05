@@ -26,7 +26,7 @@ import ShowDetails from "./components/showDetails/ShowDetails";
 const AppLayout = () => {
   return (
     <Provider store={appStore}>
-      <div className="layout">
+      <div>
         <Header />
         <Outlet />
         <Footer />
